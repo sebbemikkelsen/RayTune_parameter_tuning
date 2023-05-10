@@ -1,10 +1,11 @@
+import time
 import ray
 from ray import tune
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import fetch_covtype
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-
+from tune_sklearn import TuneGridSearchCV
 
 def train_model():
     #get the data
@@ -15,8 +16,7 @@ def train_model():
 
     #the model: random forest classifier
     model = RandomForestClassifier()
-    parameter_grid = {"n_estimators": [5, 25, 50, 75, 100], "max_depth": [3, 5, 7], "ccp_alpha": [0.005, 0.01, 0.02]}
-
+    parameter_grid = {"n_estimators": [50, 100, 125], "max_depth": [5, 10, 15, 20], "ccp_alpha": [0, >
     tune_search = TuneGridSearchCV(model, parameter_grid)
 
     tune_search.fit(x_train, y_train)
@@ -25,6 +25,8 @@ def train_model():
 
     accuracy = accuracy_score(y_test, pred)
     print("Accuracy with tuning: ", accuracy)
+
+    print(tune_search.best_params_)
 
 
 def main():
@@ -37,4 +39,4 @@ def main():
 
 
 if __name__ == '__main__':
-	main()
+        main()

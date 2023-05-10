@@ -25,7 +25,8 @@ def train_model():
     #check accuracy
     accuracy = accuracy_score(y_test, prediction)
     print("Accuracy with default parameters: ", accuracy)
-
+    print("Parameters: ")
+    print(model.get_params())
 
 def main():
     train_model()
@@ -34,4 +35,4 @@ def main():
 
 
 if __name__ == '__main__':
-	main()
+        main()
