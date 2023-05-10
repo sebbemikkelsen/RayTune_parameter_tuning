@@ -1,0 +1,3 @@
+Accuracy with tuning:  0.9490374603065326
+{'n_estimators': 125, 'max_depth': 30, 'ccp_alpha': 0}
+time:  4169.341881990433
